@@ -10,7 +10,6 @@ const HelpCenter = () => {
 
     return (
         <div className="min-h-screen">
-            {/* Header */}
             <header className="bg-white mx-4 md:mx-15">
                 <div className="py-8">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 relative">
