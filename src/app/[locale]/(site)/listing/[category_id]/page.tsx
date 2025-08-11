@@ -14,3 +14,4 @@ export default async function CategoryPage({
   // They can still be used for metadata generation or other purposes if needed.
   return <ListingContent initialCategory={category_id} />
 }
+  

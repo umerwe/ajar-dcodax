@@ -6,70 +6,53 @@ import Pagination from "@/components/ui/pagination";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useMarketplaceListings } from "@/hooks/listing";
+import Loader from "./common/loader";
+import ErrorMessage from "./common/error-message";
+import NoDataFound from "./common/no-data-found";
 
 interface ListingContentProps {
   isHome?: boolean;
   initialCategory?: string;
 }
 
-const ListingContent = ({
-  isHome,
-  initialCategory,
-}: ListingContentProps) => {
+const ListingContent = ({ isHome, initialCategory }: ListingContentProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = isHome ? 5 : 10;
 
-  const {
-    data: listingsData,
-    isLoading,
-    isError,
-    isFetching,
-  } = useMarketplaceListings({
+  const { data, isLoading, isError, isFetching } = useMarketplaceListings({
     page: currentPage,
     limit,
     ...(initialCategory ? { subCategory: initialCategory } : {}),
   });
 
-  const allListings = listingsData?.listings ?? [];
-  const totalCount = listingsData?.total ?? 0;
+  const listings = data?.listings ?? [];
+  const totalCount = data?.total ?? 0;
 
+  // Filter listings by category if initialCategory is provided
   const filteredListings = initialCategory
-    ? allListings.filter(
+    ? listings.filter(
         (item: Listing) =>
           typeof item.subCategory === "object" &&
           item.subCategory !== null &&
           item.subCategory._id === initialCategory
       )
-    : allListings;
+    : listings;
 
   const totalPages = Math.ceil(totalCount / limit);
 
+  // Handle pagination page change
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  if (isError) {
-    return (
-      <p className="text-center text-red-500 py-6">
-        Failed to fetch listings
-      </p>
-    );
-  }
+  if (isError) return <ErrorMessage />;
 
-  if (filteredListings.length === 0 && !isFetching) {
-    return (
-      <p className="text-center text-gray-600 py-6">No data found</p>
-    );
-  }
+  if (!isFetching && filteredListings.length === 0) return <NoDataFound />;
 
   return (
     <div className="mb-20">
-      {isFetching && !isLoading && (
-        <div className="text-center text-xs text-blue-500 mb-2">
-          Updating...
-        </div>
-      )}
+      {isLoading && <Loader />}
 
       <MainCard listings={filteredListings} />
 

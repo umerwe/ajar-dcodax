@@ -23,12 +23,7 @@ import ServicesAmenities from "@/components/pages/listing-details/services-ameni
 // import { appartmentsData } from "@/data/appartments-data";
 import { useMarketplaceListings } from "@/hooks/listing";
 import { useParams } from "next/navigation";
-
-// type ListingData =
-//   | PropertyCardProps
-//   | RoomCardProps
-//   | AppartmentsCardProps
-//   | VehicleCardProps;
+import Loader from "@/components/common/loader";
 
 const ListingItems = () => {
   const params = useParams();
@@ -36,12 +31,37 @@ const ListingItems = () => {
   // const category = params?.category as string;
   const [currentPage] = useState(1);
   const limit = 10;
-  
-    const {
-      data: listingsData = { listings: [], total: 0 }
-    } = useMarketplaceListings({ page: currentPage, limit })
 
-  const data:Listing[]= listingsData.listings;
+  const {
+    data: listingsData,
+    isLoading,
+    isError,
+    error,
+  } = useMarketplaceListings({ page: currentPage, limit });
+
+  if (isLoading) {
+    return (
+      <Loader />
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="p-10 text-center text-red-600">
+        Error loading data: {error?.message || "Unknown error"}
+      </div>
+    );
+  }
+
+  if (!listingsData || listingsData.listings.length === 0) {
+    return (
+      <div className="p-10 text-center text-gray-600">
+        No listings data found.
+      </div>
+    );
+  }
+
+  const data: Listing[] = listingsData.listings;
 
   const filteredData = data.filter((item) => item._id === id);
 
@@ -94,9 +114,9 @@ const ListingItems = () => {
         <LowerTabs id={id} />
 
         <div className="mt-8">
-          {/* <GuestReview property={property} />
+          {/* <GuestReview property={property} /> */}
 
-          <MostMentionedTabs property={property} /> */}
+          {/* <MostMentionedTabs property={property} /> */}
 
           {/* <GuestImpressions property={property} /> */}
         </div>
