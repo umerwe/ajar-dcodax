@@ -1,4 +1,3 @@
-import "../globals.css";
 import MainLayout from "@/components/main-layout";
 
 export default async function Layout({

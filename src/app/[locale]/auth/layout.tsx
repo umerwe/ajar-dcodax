@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "../globals.css";
 import AuthGuard from "@/components/auth/auth-guard";
 import React from "react";
 
@@ -14,10 +13,10 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-      <>
-        <AuthGuard>
-            {children}
-        </AuthGuard>
-      </>
+    <>
+      <AuthGuard>
+        {children}
+      </AuthGuard>
+    </>
   );
 }
