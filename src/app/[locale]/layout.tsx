@@ -1,6 +1,5 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Poppins } from "next/font/google"
 import "./globals.css"
 import Providers from "@/components/providers/provider"
 import { hasLocale } from "next-intl"
@@ -9,12 +8,12 @@ import { routing } from "@/i18n/routing"
 
 import { QueryClient, dehydrate } from "@tanstack/react-query"
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
-  display: "swap",
-})
+// const poppins = Poppins({
+//   subsets: ["latin"],
+//   weight: ["400", "500", "600", "700"],
+//   variable: "--font-poppins",
+//   display: "swap",
+// })
 
 export const metadata: Metadata = {
   title: "Home | AJAR",
@@ -47,7 +46,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${poppins.variable} font-sans`}>
+      <body className={`font-sans`}>
         <Providers locale={locale} messages={messages} dehydratedState={dehydratedState}>
           <main className="flex-1">{children}</main>
         </Providers>
