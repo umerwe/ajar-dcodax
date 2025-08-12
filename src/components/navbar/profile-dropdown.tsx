@@ -11,6 +11,7 @@ const profileMenuItems = [
   { label: "Profile Settings", href: "/profile/settings" },
   { label: "Rental History", href: "/rental-history" },
   { label: "Notification", href: "/notifications" },
+  { label: "Saved", href: "/saved" },
   { label: "Chat", href: "/chat" },
   { label: "Emergency Assistance", href: "/emergency" },
   { label: "Help Center", href: "/help-center" },

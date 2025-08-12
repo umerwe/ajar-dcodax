@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://ajar-server.hostdonor.com",
+  baseURL: "http://192.168.18.64:5000",
 });
 
 // Interceptor to add token automatically

@@ -7,7 +7,7 @@ import SearchBar from "./search-bar/search-bar";
 import ProfileDropdown from "./profile-dropdown";
 import { navLinks } from "@/data/navlinks";
 import Brand from "./brand";
-import { useLayoutVisibility } from "@/hooks/use-layout-visibility";
+import { useLayoutVisibility } from "@/hooks/useLayoutVisibility";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);

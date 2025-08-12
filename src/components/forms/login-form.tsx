@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Login, LoginSchema } from "@/validations/auth"
-import { useLogin } from "@/hooks/auth"
+import { useLogin } from "@/hooks/useAuth"
 import Input from "../fields/auth-input"
 import Button from "../auth/button";
 import Header from "../auth/header";

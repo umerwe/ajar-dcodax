@@ -1,8 +1,8 @@
-import { CardFooter } from '../ui/card'
-import { Button } from '../ui/button'
-import Link from 'next/link';
+import { CardFooter } from "../ui/card"
+import { Button } from "../ui/button"
+import Link from "next/link"
 
-const CardBottom = ({ property }: {property : Listing}) => {
+const CardBottom = ({ property }: { property: any }) => {
   return (
     <CardFooter className="pl-2 sm:mb-2 min-[500px]:px-3 pb-2 pt-0 flex justify-between items-center mt-2">
       <div className="flex flex-col">
@@ -10,12 +10,8 @@ const CardBottom = ({ property }: {property : Listing}) => {
         <span className="text-sm text-gray-custom -mt-1 font-medium">day</span>
       </div>
 
-      <Link href={`/listing/${property.subCategory?.name?.toLowerCase()}/${property._id}`}>
-        <Button
-          variant="outline"
-          className="px-3.5 h-7.5 min-[500px]:h-9 min:[500px]:px-4
-              text-xs bg-transparent'>"
-        >
+      <Link href={`/listing/${property.subCategory?._id}/${property._id}`}>
+        <Button variant="outline" className="px-3.5 h-7.5 min-[500px]:h-9 min:[500px]:px-4 text-xs bg-transparent">
           View Details
         </Button>
       </Link>

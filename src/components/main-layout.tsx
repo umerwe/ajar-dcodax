@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutVisibility } from "@/hooks/use-layout-visibility";
+import { useLayoutVisibility } from "@/hooks/useLayoutVisibility";
 import Categories from "./categories";
 import Navbar from "./navbar/navbar";
 

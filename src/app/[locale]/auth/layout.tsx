@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import AuthGuard from "@/components/auth/auth-guard";
 import React from "react";
 
 export const metadata: Metadata = {
@@ -14,9 +13,7 @@ export default function AuthLayout({
 }) {
   return (
     <>
-      <AuthGuard>
         {children}
-      </AuthGuard>
     </>
   );
 }

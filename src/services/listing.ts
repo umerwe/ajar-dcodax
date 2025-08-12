@@ -11,7 +11,7 @@ export async function getListing(params: MarketplaceListingsParams) {
   const { page, limit, subCategory } = params
 
   const requestParams: Record<string, string | number> = {
-    zone: "68934f22cb0f4ba646a17026",
+    zone: "68934f22cb0f4ba646a1702",
     page: page ?? "",
     limit: limit ?? "",
   }

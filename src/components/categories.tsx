@@ -44,8 +44,8 @@ const Categories = () => {
               key={i}
               href={getHref(cat)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors duration-200 ${active
-                ? "text-[#01c89b] border-2 border-t-aqua border-r-aqua border-b-blue border-l-blue bg-transparent"
-                : "bg-gray-100 text-gray-400 border border-transparent hover:border-[#01c89b] hover:text-[#01c89b]"
+                ? "text-aqua border-2 border-t-aqua border-r-aqua border-b-blue border-l-blue bg-transparent"
+                : "bg-gray-100 text-gray-400 border border-transparent hover:border-aqua hover:text-aqua"
                 }`}
             >
               <Image
