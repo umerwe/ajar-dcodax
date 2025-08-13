@@ -2,8 +2,11 @@ type ErrorResponse = {
   message: string;
 };
 
-interface DataProps {
-  property: PropertyCardProps | RoomCardProps | AppartmentsCardProps | VehicleCardProps
+type ProviderProps = {
+  children: React.ReactNode
+  messages: Messages
+  locale: string
+  dehydratedState: DehydratedState
 }
 
 interface AuthLayoutProps {
@@ -16,20 +19,6 @@ interface ListingProps {
     id: string
     category: string
   }>
-}
-
-interface ListingData {
-    id: string;
-    title: string;
-    images: string[];
-    rating: number;
-    reviewCount: number;
-    area?: string;
-    beds?: number;
-    guests?: number;
-    passengers?: number;
-    features?: string[];
-    freeCancellation?: boolean;
 }
 
 interface Listing  {

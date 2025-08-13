@@ -1,10 +1,6 @@
-"use client"
-
 import * as React from "react"
-import * as ToastPrimitives from "@radix-ui/react-toast"
-import { cva, type VariantProps } from "class-variance-authority"
 import { X } from "lucide-react"
-
+import * as ToastPrimitives from "@radix-ui/react-toast"
 import { cn } from "@/lib/utils"
 
 const ToastProvider = ToastPrimitives.Provider
@@ -24,26 +20,24 @@ const ToastViewport = React.forwardRef<
 ))
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName
 
-const toastVariants = cva(
-  "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full",
-  {
-    variants: {
-      variant: {
-        default: "border bg-background text-foreground",
-        destructive: "destructive border-destructive bg-destructive text-destructive-foreground",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  },
-)
-
 const Toast = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> & VariantProps<typeof toastVariants>
->(({ className, variant, ...props }, ref) => {
-  return <ToastPrimitives.Root ref={ref} className={cn(toastVariants({ variant }), className)} {...props} />
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> & {
+    variant?: "default" | "destructive"
+  }
+>(({ className, variant = "default", ...props }, ref) => {
+  return (
+    <ToastPrimitives.Root
+      ref={ref}
+      className={cn(
+        "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full",
+        variant === "default" && "border bg-background text-foreground",
+        variant === "destructive" && "destructive group border-destructive bg-destructive text-destructive-foreground",
+        className,
+      )}
+      {...props}
+    />
+  )
 })
 Toast.displayName = ToastPrimitives.Root.displayName
 
@@ -99,6 +93,101 @@ ToastDescription.displayName = ToastPrimitives.Description.displayName
 type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>
 
 type ToastActionElement = React.ReactElement<typeof ToastAction>
+
+// Toast functionality
+type ToastItem = {
+  id: string
+  title?: React.ReactNode
+  description?: React.ReactNode
+  action?: ToastActionElement
+  variant?: "default" | "destructive"
+  duration?: number
+  open: boolean
+}
+
+let count = 0
+function genId() {
+  count = (count + 1) % Number.MAX_SAFE_INTEGER
+  return count.toString()
+}
+
+const TOAST_DEFAULT_DURATION = 4000
+
+const listeners = new Set<(toasts: ToastItem[]) => void>()
+let memoryState: ToastItem[] = []
+
+function dispatch() {
+  const toastsCopy = [...memoryState]
+  listeners.forEach((listener) => listener(toastsCopy))
+}
+
+export const toast = ({ duration, ...props }: Omit<ToastItem, "id" | "open">) => {
+  const id = genId()
+  const toastItem: ToastItem = {
+    ...props,
+    id,
+    open: true,
+    duration: duration ?? TOAST_DEFAULT_DURATION,
+  }
+
+  memoryState = [toastItem, ...memoryState]
+  dispatch()
+
+  if (toastItem.duration && toastItem.duration > 0) {
+    setTimeout(() => {
+      memoryState = memoryState.filter((t) => t.id !== id)
+      dispatch()
+    }, toastItem.duration)
+  }
+
+  return {
+    id,
+    dismiss: () => {
+      memoryState = memoryState.filter((t) => t.id !== id)
+      dispatch()
+    },
+  }
+}
+
+export function useToast() {
+  const [toasts, setToasts] = React.useState<ToastItem[]>(memoryState)
+
+  React.useEffect(() => {
+    listeners.add(setToasts)
+    return () => {
+      listeners.delete(setToasts)
+    }
+  }, [])
+
+  return {
+    toasts,
+    toast,
+    dismiss: (id?: string) => {
+      memoryState = id ? memoryState.filter((t) => t.id !== id) : []
+      dispatch()
+    },
+  }
+}
+
+export function Toaster() {
+  const { toasts } = useToast()
+
+  return (
+    <ToastProvider>
+      {toasts.map(({ id, title, description, action, variant, ...props }) => (
+        <Toast key={id} variant={variant} {...props}>
+          <div className="grid gap-1">
+            {title && <ToastTitle>{title}</ToastTitle>}
+            {description && <ToastDescription>{description}</ToastDescription>}
+          </div>
+          {action}
+          <ToastClose />
+        </Toast>
+      ))}
+      <ToastViewport />
+    </ToastProvider>
+  )
+}
 
 export {
   type ToastProps,

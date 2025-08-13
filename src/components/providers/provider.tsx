@@ -1,20 +1,12 @@
 "use client"
 import type React from "react"
 import { ThemeProvider } from "./theme-provider"
-import { NextIntlClientProvider, type Messages } from "next-intl"
+import { NextIntlClientProvider } from "next-intl"
 import ReactQueryProvider from "./query-provider"
-import type { DehydratedState } from "@tanstack/react-query"
 import AuthGuard from "../auth/auth-guard"
-import { Toaster } from "@/components/ui/toaster" // shadcn/ui's toast system
+import { Toaster } from "@/components/ui/toast"
 
-type Props = {
-  children: React.ReactNode
-  messages: Messages
-  locale: string
-  dehydratedState: DehydratedState
-}
-
-export default function Providers({ children, messages, locale, dehydratedState }: Props) {
+export default function Providers({ children, messages, locale, dehydratedState }: ProviderProps) {
   return (
     <ReactQueryProvider dehydratedState={dehydratedState}>
       <ThemeProvider>

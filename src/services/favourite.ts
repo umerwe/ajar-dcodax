@@ -1,20 +1,12 @@
-import api from "@/lib/axios"
-
-interface FavouritePayload {
-  listingId: string
-}
+import api from "@/lib/axios";
 
 export const getFavourite = async () => {
-  const { data } = await api.get("/api/favourites")
+  const { data } = await api.get("/api/favourites");
   return data;
-}
+};
 
-export const addFavourite = async (payload: FavouritePayload) => {
-  const { data } = await api.post("/api/favourites", payload)
-  return data.data
-}
+export const toggleFavourite = async (listingId: string) => {
+  const { data } = await api.patch(`/api/favourites`, { listingId });
+  return data;
+};
 
-export const removeFavourite = async (listingId: string) => {
-  const { data } = await api.delete(`/api/favourites/${listingId}`)
-  return data
-}

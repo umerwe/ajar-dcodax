@@ -1,39 +1,38 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { X } from "lucide-react"
-import { useRemoveFavourite } from "@/hooks/useFavourite"
-import { cn } from "@/lib/utils"
+import type React from "react";
+import { X } from "lucide-react";
+import { useToggleFavourite } from "@/hooks/useFavourite";
+import { cn } from "@/lib/utils";
 
 interface RemoveFavouriteButtonProps {
-  listingId: string
-  className?: string
+  listingId: string;
+  className?: string;
 }
 
 export const RemoveFavouriteButton = ({ listingId, className }: RemoveFavouriteButtonProps) => {
-  const removeFavourite = useRemoveFavourite()
+  const toggleFavourite = useToggleFavourite();
 
   const handleRemove = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    removeFavourite.mutate(listingId)
-  }
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavourite.mutate(listingId);
+  };
 
   return (
     <button
       onClick={handleRemove}
-      disabled={removeFavourite.isPending}
+      disabled={toggleFavourite.isPending}
       className={cn(
         "absolute top-0 right-0 z-10",
-        "bg-red-500/90 backdrop-blur-sm hover:bg-red-600",
+        "bg-red-500 backdrop-blur-sm hover:bg-red-600",
         "p-1.5 rounded-full transition-all duration-200",
         "text-white shadow-sm",
         "disabled:opacity-50 disabled:cursor-not-allowed",
-        className,
+        className
       )}
     >
       <X className="w-3 h-3" />
     </button>
-  )
-}
+  );
+};

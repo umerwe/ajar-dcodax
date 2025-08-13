@@ -1,4 +1,3 @@
-import React from 'react';
 import { Search, Bell, User, ArrowRight, ChevronRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -7,7 +6,6 @@ import Image from 'next/image';
 import { helpCategories } from '@/data/helpCategories';
 
 const HelpCenter = () => {
-
     return (
         <div className="min-h-screen">
             <header className="bg-white mx-4 md:mx-15">

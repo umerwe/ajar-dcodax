@@ -18,7 +18,7 @@ export interface ReactQueryProviderProps {
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 30 * 1000, // 30 seconds
+      staleTime: 60 * 1000, // 30 seconds
     },
   },
 });
