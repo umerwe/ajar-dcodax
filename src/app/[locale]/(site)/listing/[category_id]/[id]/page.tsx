@@ -21,7 +21,7 @@ const ListingItems = () => {
   const subCategory = params?.category_id as string
   const id = params?.id as string
 
-  const { data: listingsData, isLoading, isError, error, refetch } = useMarketplaceListings({ subCategory })
+  const { data: listingsData, isLoading, isError, error } = useMarketplaceListings({ subCategory })
 
   // Check if data exists and filter for specific property
   const listings = listingsData?.listings || []
@@ -35,10 +35,6 @@ const ListingItems = () => {
         isError={isError}
         error={error}
         isEmpty={!isLoading && (!listingsData || listings.length === 0 || filteredData.length === 0)}
-        loadingText="Loading property details..."
-        errorTitle="Failed to load property"
-        errorMessage="We couldn't load the property details. Please check your connection and try again."
-        emptyTitle={filteredData.length === 0 && listings.length > 0 ? "Property not found" : "No properties available"}
         emptyMessage={
           filteredData.length === 0 && listings.length > 0
             ? `No property found with ID: ${id}. It may have been removed or doesn't exist.`
@@ -47,7 +43,6 @@ const ListingItems = () => {
         emptyIcon={<Home className="w-16 h-16 text-gray-300 mx-auto" />}
         emptyActionText="Browse Properties"
         emptyActionHref="/listing"
-        onRetry={() => refetch()}
       />
 
       {!isLoading && !isError && property && (
@@ -77,7 +72,6 @@ const ListingItems = () => {
             </div>
 
             {/* RIGHT COLUMN */}
-            {/* RIGHT COLUMN */}
             <div className="w-full md:w-2/5 lg:w-1/3 space-y-3 md:space-y-4">
               <PricingActions property={property} />
               <ExploreArea property={property} />
@@ -97,7 +91,7 @@ const ListingItems = () => {
               {/* <GuestImpressions property={property} /> */}
             </div>
           </div>
-          
+
           <ServicesAmenities />
         </div>
       )}

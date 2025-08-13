@@ -18,7 +18,7 @@ const ImageGalleryLayout = ({ property }: { property: ImageProps }) => {
         {/* Big Left Image */}
         <div className="w-full md:w-[45%] lg:w-[45%] h-[250px] sm:h-[280px] md:h-auto xl:h-[340px] min-h-[250px] relative rounded-lg overflow-hidden">
           <Image
-            src={`/${property.images[0]}` || "/placeholder.svg"}
+            src={property.images[0]}
             alt="Main image"
             fill
             className="object-cover cursor-pointer"
@@ -37,7 +37,7 @@ const ImageGalleryLayout = ({ property }: { property: ImageProps }) => {
                   className="relative flex-shrink-0 w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] rounded-lg overflow-hidden group"
                 >
                   <Image
-                    src={`/${img}` || "/placeholder.svg"}
+                    src={img}
                     alt={`Gallery image ${index + 1}`}
                     fill
                     className="object-cover cursor-pointer"
@@ -74,7 +74,7 @@ const ImageGalleryLayout = ({ property }: { property: ImageProps }) => {
             {property.images.slice(1, 7).map((img, index) => (
               <div key={index} className="relative w-full h-full rounded-lg overflow-hidden group">
                 <Image
-                  src={`/${img}` || "/placeholder.svg"}
+                  src={img}
                   alt={`Gallery image ${index + 1}`}
                   fill
                   className="object-cover cursor-pointer"

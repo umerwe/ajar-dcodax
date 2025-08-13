@@ -2,7 +2,7 @@ import { CardFooter } from "../ui/card"
 import { Button } from "../ui/button"
 import Link from "next/link"
 
-const CardBottom = ({ property }: { property: any }) => {
+const CardBottom = ({ property }: { property: Listing }) => {
   return (
     <CardFooter className="pl-2 sm:mb-2 min-[500px]:px-3 pb-2 pt-0 flex justify-between items-center mt-2">
       <div className="flex flex-col">

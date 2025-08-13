@@ -11,7 +11,7 @@ export async function getListing(params: MarketplaceListingsParams) {
   const { page, limit, subCategory } = params
 
   const requestParams: Record<string, string | number> = {
-    zone: "68934f22cb0f4ba646a1702",
+    zone: "68934f22cb0f4ba646a17026",
     page: page ?? "",
     limit: limit ?? "",
   }
@@ -26,3 +26,6 @@ export async function getListing(params: MarketplaceListingsParams) {
 
   return data.data
 }
+
+// 6899d0cdb8f33f6a6d7e0dc0
+// 68934f22cb0f4ba646a17026

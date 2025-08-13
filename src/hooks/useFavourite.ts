@@ -20,7 +20,6 @@ export const useAddFavourite = () => {
     const mutation = useMutation({
         mutationFn: addFavourite,
         onSuccess: () => {
-            // <CHANGE> Invalidate favourites query to refresh the list
             queryClient.invalidateQueries({ queryKey: ["favourites"] });
             toast({
                 title: "Added to favourites",
@@ -68,5 +67,5 @@ export const useRemoveFavourite = () => {
 
 export const useIsFavourite = (listingId: string) => {
     const { data =  [] } = useGetFavourite();
-    return data.favourites?.some((fav: any) => fav.listing._id === listingId);
+    return data.favourites?.some((fav: Favourite) => fav.listing._id === listingId);
 };

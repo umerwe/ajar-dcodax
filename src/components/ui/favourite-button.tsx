@@ -24,9 +24,12 @@ export const FavouriteButton = ({
   const toggleFavourite = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    isFavourite
-      ? removeFavourite.mutate(listingId)
-      : addFavourite.mutate({ listingId })
+    if (isFavourite) {
+      removeFavourite.mutate(listingId)
+    } else {
+      addFavourite.mutate({ listingId })
+    }
+
   }
 
   const sizeClasses = {

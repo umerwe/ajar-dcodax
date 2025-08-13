@@ -18,7 +18,7 @@ const ListingContent = ({ isHome, initialCategory }: ListingContentProps) => {
   const [currentPage, setCurrentPage] = useState(1)
   const limit = isHome ? 5 : 10
 
-  const { data, isLoading, isError, isFetching, refetch } = useMarketplaceListings({
+  const { data, isLoading, isError, isFetching } = useMarketplaceListings({
     page: currentPage,
     limit,
     ...(initialCategory ? { subCategory: initialCategory } : {}),
@@ -48,9 +48,6 @@ const ListingContent = ({ isHome, initialCategory }: ListingContentProps) => {
         isLoading={isLoading}
         isError={isError}
         isEmpty={!isFetching && filteredListings.length === 0}
-        loadingText="Loading listings..."
-        errorTitle="Failed to load listings"
-        errorMessage="We couldn't load the listings. Please check your connection and try again."
         emptyTitle="No listings found"
         emptyMessage={
           initialCategory
@@ -58,9 +55,7 @@ const ListingContent = ({ isHome, initialCategory }: ListingContentProps) => {
             : "No listings available at the moment. Check back later for new properties."
         }
         emptyIcon={<Search className="w-16 h-16 text-gray-300 mx-auto" />}
-        emptyActionText="Browse All Listings"
         emptyActionHref="/listing"
-        onRetry={() => refetch()}
       />
 
       {!isLoading && !isError && filteredListings.length > 0 && (

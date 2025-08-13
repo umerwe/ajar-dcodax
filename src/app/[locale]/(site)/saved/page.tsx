@@ -6,9 +6,9 @@ import { Heart } from "lucide-react"
 import StateHandler from "@/components/common/state-handler"
 
 const SavedPage = () => {
-  const { data = [], isLoading, isError, refetch } = useGetFavourite()
+  const { data = [], isLoading, isError } = useGetFavourite();
 
-  const listings = data.favourites?.map((favourite: any) => favourite.listing).filter(Boolean) || []
+  const listings = data.favourites?.map((favourite: Favourite) => favourite.listing).filter(Boolean) || []
   const count = data.count || 0
   const countStatus = count > 1 ? "products" : "product"
 
@@ -28,15 +28,10 @@ const SavedPage = () => {
           isLoading={isLoading}
           isError={isError}
           isEmpty={!isLoading && listings.length === 0}
-          loadingText="Loading your favourites..."
-          errorTitle="Failed to load favourites"
-          errorMessage="We couldn't load your saved properties. Please check your connection and try again."
-          emptyTitle="No favourites yet"
           emptyMessage="Start exploring properties and save your favorites by clicking the heart icon."
           emptyIcon={<Heart className="w-16 h-16 text-gray-300 mx-auto" />}
-          emptyActionText="Browse Properties"
+          emptyActionText="Browse Listings"
           emptyActionHref="/listing"
-          onRetry={() => refetch()}
         />
 
         {!isLoading && !isError && listings.length > 0 && <MainCard listings={listings} showRemoveButton={true} />}

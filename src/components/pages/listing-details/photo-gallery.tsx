@@ -44,7 +44,7 @@ export const PhotoGallery = ({ images, open, onClose }: PhotoGalleryProps) => {
         <div className="relative flex-1 bg-black flex items-center justify-center">
           <div className="relative w-full h-full max-h-[calc(90vh-150px)] sm:max-h-[calc(80vh-150px)]">
             <Image
-              src={`/${images[currentIndex]}` || "/placeholder.svg"}
+              src={images[currentIndex]}
               alt={`Property photo ${currentIndex + 1}`}
               fill
               className="object-contain"
@@ -86,7 +86,7 @@ export const PhotoGallery = ({ images, open, onClose }: PhotoGalleryProps) => {
                 onClick={() => setCurrentIndex(index)}
               >
                 <Image
-                  src={`/${image}` || "/placeholder.svg"}
+                  src={image}
                   alt={`Thumbnail ${index + 1}`}
                   fill
                   className="object-cover"

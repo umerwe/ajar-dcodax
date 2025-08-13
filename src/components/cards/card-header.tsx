@@ -9,7 +9,7 @@ import Autoplay from "embla-carousel-autoplay"
 import { useState, useEffect } from "react"
 
 interface CardTopProps {
-  property: any
+  property: Listing
   showRemoveButton?: boolean
 }
 
