@@ -54,7 +54,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
   if (!isVerified)
     return (
       <div className="flex items-center justify-center h-screen">
-        <Loader className="border-aqua" />
+        <Loader />
       </div>
     );
 

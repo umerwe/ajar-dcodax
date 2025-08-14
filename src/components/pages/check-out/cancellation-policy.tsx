@@ -3,11 +3,10 @@ import React, { useState } from 'react'
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 
 const CancellationPolicy = () => {
-    
     const [isPolicyExpanded, setIsPolicyExpanded] = useState(true);
     const [isInstructionsExpanded, setIsInstructionsExpanded] = useState(false);
     return (
-        <div className="max-w-2xl mx-auto mt-10 space-y-4">
+        <div className="max-w-2xl mt-10 space-y-4">
             <div className="bg-white border border-gray-200 rounded-2xl px-3.5 sm:px-6 py-4 shadow-sm">
                 <button
                     type="button"

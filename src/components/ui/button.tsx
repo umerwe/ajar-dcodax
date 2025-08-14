@@ -14,7 +14,7 @@ const buttonVariants = cva(
         destructive:
           "bg-header text-white shadow-xs rounded-full w-[144px] cursor-pointer",
         outline:
-          "text-header hover:bg-green-100 hover:text-green-600 bg-background shadow-xs rounded-full border-2 border-t-aqua border-r-aqua border-b-blue border-l-blue cursor-pointer",
+          "text-header hover:bg-green-200 hover:text-green-600 bg-transparent shadow-xs rounded-full border-2 border-t-aqua border-r-aqua border-b-blue border-l-blue cursor-pointer",
         secondary:
           "bg-white text-[#01c89b] shadow-xs hover:bg-gray-100 cursor-pointer",
         ghost:

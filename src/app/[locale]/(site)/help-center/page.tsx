@@ -14,19 +14,17 @@ const HelpCenter = () => {
 
                         {/* Left Side: Welcome Text */}
                         <div className="flex flex-col">
-                            <h1 className="text-lg sm:text-xl xl:text-3xl font-semibold text-gray-900">Welcome, Amanda</h1>
+                            <h1 className="text-lg sm:text-xl xl:text-2xl font-semibold text-gray-900">Welcome, Amanda</h1>
                             <p className="text-sm xl:text-lg text-gray-500">Tue, 07 June 2022</p>
                         </div>
 
                         {/* Right Side: Search & Icons */}
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 w-full sm:w-auto">
-
-                            {/* Search Input */}
                             <div className="relative w-full sm:w-64 xl:w-74">
-                                <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                                 <Input
                                     placeholder="Search"
-                                    className="pl-10 xl:pl-11 w-full h-10 bg-gray-100 border border-gray-200 focus:bg-white focus:border-gray-300 text-sm xl:text-lg"
+                                    className="pl-9 pb-1 w-full h-10 bg-gray-100 text-sm xl:text-md"
                                 />
                             </div>
 
@@ -55,10 +53,10 @@ const HelpCenter = () => {
                         </p>
 
                         <div className="relative">
-                            <Search className="w-4 h-4 sm:w-5 sm:h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                            <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                             <Input
                                 placeholder="Search"
-                                className="pl-9 sm:pl-10 w-60 md:w-80 h-9 md:h-12 text-sm sm:text-base bg-white border-0 focus:bg-white"
+                                className="pl-9 w-60 md:w-80 h-9 md:h-12 text-sm sm:text-base bg-white border-0 focus:bg-white"
                             />
                         </div>
                     </div>

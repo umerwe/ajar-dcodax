@@ -6,14 +6,13 @@ import Header from "@/components/pages/listing-details/header"
 import ImageGalleryLayout from "@/components/pages/listing-details/image-gallery-layout"
 import PricingActions from "@/components/pages/listing-details/pricing-actions"
 import Rating from "@/components/pages/listing-details/rating"
-import UpperTabs from "@/components/pages/listing-details/upper-tabs"
 import HostInfo from "@/components/pages/listing-details/host-info"
-import LowerTabs from "@/components/pages/listing-details/lower-tabs"
 import ServicesAmenities from "@/components/pages/listing-details/services-amenities"
 import { useMarketplaceListings } from "@/hooks/listing"
 import { useParams } from "next/navigation"
 import StateHandler from "@/components/common/state-handler"
 import { Home } from "lucide-react"
+import Tabs from "@/components/ui/tabs"
 
 const ListingItems = () => {
   const params = useParams()
@@ -43,20 +42,34 @@ const ListingItems = () => {
         emptyIcon={<Home className="w-16 h-16 text-gray-300 mx-auto" />}
         emptyActionText="Browse Properties"
         emptyActionHref="/listing"
+        className="min-h-screen"
       />
 
-      {!isLoading && !isError && property && (
+      {!isLoading && !isError && (
         <div className="mx-3 sm:mx-7">
-          <Header property={property} title="Rental Details" />
+          <Header
+            property={property}
+            title="Rental Details"
+          />
 
-          <ImageGalleryLayout property={property} />
+          <ImageGalleryLayout
+            property={property}
+          />
 
-          <UpperTabs id={id} />
+          <Tabs
+            id={id}
+            defaultActive="Overview"
+            activeClass="border-b-2 border-aqua text-aqua font-semibold"
+            inactiveClass="hover:text-aqua"
+          />
+
 
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 px-3 md:px-6">
             {/* LEFT COLUMN */}
             <div className="w-full md:w-3/5 lg:w-2/3 flex flex-col gap-4">
-              <CoreDetails property={property} />
+              <CoreDetails
+                property={property}
+              />
 
               {/* <Features
             freeCancellation={property.freeCancellation}
@@ -64,24 +77,39 @@ const ListingItems = () => {
             layout="inline"
           /> */}
 
-              <Rating property={property} />
+              <Rating
+                property={property}
+              />
 
               {/* <GuestLikedPost property={property} /> */}
 
-              <AboutListing property={property} />
+              <AboutListing
+                property={property}
+              />
             </div>
 
             {/* RIGHT COLUMN */}
             <div className="w-full md:w-2/5 lg:w-1/3 space-y-3 md:space-y-4">
-              <PricingActions property={property} />
-              <ExploreArea property={property} />
+              <PricingActions
+                property={property}
+              />
+
+              <ExploreArea
+                property={property}
+              />
             </div>
           </div>
 
           <div className="sm:px-3">
-            <HostInfo property={property} />
+            <HostInfo
+              property={property}
+            />
 
-            <LowerTabs id={id} />
+            <Tabs
+              id={id}
+              defaultActive="Rooms"
+            />
+
 
             <div className="mt-8">
               {/* <GuestReview property={property} /> */}

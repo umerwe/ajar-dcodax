@@ -6,9 +6,9 @@ const LogoutButton = () => {
   const queryClient = useQueryClient();
 
   const handleClick = () => {
-    queryClient.clear();         // clear React Query cache
-    localStorage.clear();        // clear localStorage
-    sessionStorage.clear();      // clear sessionStorage if used
+    queryClient.clear();
+    localStorage.clear();
+    sessionStorage.clear();
 
     router.replace("/auth/login");
   };

@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const HostInfo = ({ property }: {property : Listing}) => {
     return (
-        <div className="mt-10 (mt-2) (md:-mt-12)">
+        <div className="my-10 (mt-2) (md:-mt-12)">
             <div className="flex items-center mb-4">
                 <h3 className="text-lg font-bold text-gray-800">Hosted by</h3>
             </div>

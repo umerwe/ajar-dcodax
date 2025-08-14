@@ -10,7 +10,7 @@ const LowerTabs = ({ id }: { id: string }) => {
     return (
         <div className="mt-8 border-b">
             <div className="overflow-x-auto scrollbar-hide">
-                <ul className="flex space-x-4 sm:space-x-6 lg:space-x-8 text-gray-700 text-xs sm:text-sm xl:text-lg font-medium min-w-max">
+                <ul className="flex space-x-4 sm:space-x-6 lg:space-x-8 text-gray-700 text-xs sm:text-sm 2xl:text-lg font-medium min-w-max">
                     {lowerTabs.map((tab) => (
                         <li
                             key={tab}

@@ -29,7 +29,7 @@ export default function CongratulationsPage() {
                 {/* Login Button */}
                 <Link
                     href="/login">
-                    <Button variant='destructive'  className ="w-full">
+                    <Button variant='destructive' className ="w-full">
                         Log In
                     </Button>
                 </Link>

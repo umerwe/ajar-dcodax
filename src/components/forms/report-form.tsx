@@ -30,17 +30,14 @@ export default function ReportForm({
 
     return (
         <div>
-            <div className="mx-3 sm:mx-7">
-                <Header title={formTitle} />
-            </div>
+            <Header title={formTitle} />
 
-            <div className="max-w-6xl mx-auto py-6 px-4">
+            <div className="max-w-6xl mx-auto py-6">
                 <h1 className="text-2xl font-bold text-gray-800">{formTitle}</h1>
                 <p className="text-sm text-gray-400 mt-1">Please fill the following details to report an issue</p>
 
                 {/* Form Fields */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                    {/* Rental */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                             Rental

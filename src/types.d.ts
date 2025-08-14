@@ -9,9 +9,16 @@ type ProviderProps = {
   dehydratedState: DehydratedState
 }
 
+
 interface AuthLayoutProps {
     FormComponent: ReactNode,
     isVerfication?: boolean
+}
+
+interface MarketplaceListingsProps {
+  page?: number
+  limit?: number
+  subCategory?: string
 }
 
 interface ListingProps {

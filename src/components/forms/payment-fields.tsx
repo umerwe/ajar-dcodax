@@ -18,7 +18,7 @@ interface PaymentFieldsProps {
 
 const PaymentFields = ({ register, setValue, errors }: PaymentFieldsProps) => {
     return (
-        <div className="bg-white rounded-lg p-2 sm:px-6 sm:pt-2 sm:pb-0">
+        <div className="bg-white rounded-lg sm:pt-2 sm:pb-0">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Choose how to pay</h2>
             <div className="space-y-4 mb-6">
                 <RadioInput

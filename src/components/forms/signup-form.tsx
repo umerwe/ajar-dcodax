@@ -26,7 +26,7 @@ const SignUpForm = () => {
     },
   });
 
-  const { mutate } = useSignup();
+  const { mutate,isPending } = useSignup();
 
   const onSubmit = async (formData: Register) => {
     mutate(formData);
@@ -76,6 +76,7 @@ const SignUpForm = () => {
         <Button
           text="Sign Up"
           className="mt-1.5"
+          isPending = {isPending}
         />
       </form>
 

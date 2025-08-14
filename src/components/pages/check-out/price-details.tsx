@@ -1,6 +1,6 @@
 const PriceDetails = () => {
     return (
-        <div className="bg-white rounded-lg pt-6 pb-0 sm:px-6">
+        <div className="bg-white rounded-lg pt-6 pb-0">
             <h4 className="text-lg font-semibold text-gray-900 mb-4">Price Details</h4>
             <div className="space-y-3">
                 <div className="flex justify-between text-sm">

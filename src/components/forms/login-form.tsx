@@ -27,7 +27,7 @@ const LoginForm = () => {
 
   const [keepSignedIn, setKeepSignedIn] = useState(false)
 
-  const { mutate } = useLogin();
+  const { mutate ,isPending } = useLogin();
 
   const onSubmit = (formData: Login) => {
     mutate(formData);
@@ -74,6 +74,7 @@ const LoginForm = () => {
 
         <Button
           text="Sign In"
+          isPending = {isPending}
         />
       </form>
       

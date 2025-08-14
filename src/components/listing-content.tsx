@@ -27,16 +27,16 @@ const ListingContent = ({ isHome, initialCategory }: ListingContentProps) => {
   const listings = data?.listings ?? []
   const totalCount = data?.total ?? 0
 
+  // Only filter if initialCategory exists and the subCategory is an object with matching _id
   const filteredListings = initialCategory
     ? listings.filter(
-        (item: Listing) =>
-          typeof item.subCategory === "object" && item.subCategory !== null && item.subCategory._id === initialCategory,
-      )
+      (item: Listing) =>
+        item.subCategory && typeof item.subCategory === "object" && item.subCategory._id === initialCategory,
+    )
     : listings
 
   const totalPages = Math.ceil(totalCount / limit)
 
-  // Handle pagination page change
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -45,6 +45,7 @@ const ListingContent = ({ isHome, initialCategory }: ListingContentProps) => {
   return (
     <div className="mb-20">
       <StateHandler
+        isHome={isHome}
         isLoading={isLoading}
         isError={isError}
         isEmpty={!isFetching && filteredListings.length === 0}

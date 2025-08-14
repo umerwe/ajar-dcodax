@@ -13,15 +13,13 @@ export default async function ReportLayout({
 }) {
 
     return (
-        <html lang="en" suppressHydrationWarning>
-            <body>
-                <div className="relative">
-                    <div className="absolute right-3 sm:right-10 top-6 lg:top-7">
-                        <ReportDropdown />
-                    </div>
-                    {children}
-                </div>
-            </body>
-        </html>
+        <div className="relative">
+            <div className="absolute right-3 sm:right-10 top-6 lg:top-7">
+                <ReportDropdown />
+            </div>
+            <div className="px-4 sm:px-10">
+                {children}
+            </div>
+        </div>
     );
 }
